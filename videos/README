@@ -1,0 +1,7 @@
+This folder contains videos that show the MPC system performance under different scenarios, in particular:
+
+out.mp4
+	Shows the performance of the system with latency taken into account.
+
+out_no_latency_handling.mp4
+	Shows the performance of the system neglecting the effect of latency.

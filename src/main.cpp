@@ -78,6 +78,8 @@ int main() {
     // The 2 signifies a websocket event    
 
     int latency = 100;
+    const double Lf = 2.67;
+  
     string sdata = string(data).substr(0, length);
     cout << sdata << endl;
     if (sdata.size() > 2 && sdata[0] == '4' && sdata[1] == '2') {
@@ -101,9 +103,7 @@ int main() {
           px = px + v*cos(psi)*double(latency)/1000.0;
           py = py + v*sin(psi)*double(latency)/1000.0;
           psi = psi - v/2.67*steer_value*(double(latency)/1000.0);
-          v = v + throttle_value*(latency/1000.0);
-
-          std::cout << "PTSX length: " << ptsx.size() << std::endl;
+          v = v + throttle_value*(latency/1000.0);          
 
           for (int ii = 0; ii < ptsx.size(); ii = ii + 1) {
 
@@ -138,8 +138,6 @@ int main() {
 
           auto vars = mpc.Solve(state, coeffs);
 
-          std::cout << "VARS : " << vars.size() << std::endl;
-
           /*
           * TODO: Calculate steering angle and throttle using MPC.
           *
@@ -153,7 +151,7 @@ int main() {
           //msgJson["steering_angle"] = steer_value;
           //msgJson["throttle"] = throttle_value;
 
-          msgJson["steering_angle"] = vars[0]/(deg2rad(25)*2.67);
+          msgJson["steering_angle"] = vars[0]/(deg2rad(25)*Lf);
           msgJson["throttle"] = vars[1];
 
           //Display the MPC predicted trajectory 
@@ -193,8 +191,7 @@ int main() {
 
 
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
-          std::cout << msg << std::endl;
-          // exit(0);
+          // std::cout << msg << std::endl;          
           
           // Latency
           // The purpose is to mimic real driving conditions where
