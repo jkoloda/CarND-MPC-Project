@@ -1,0 +1,3 @@
+/home/janko/Dropbox/Udacity/Term2/CarND-MPC-Project/src/CMakeFiles/rebuild_cache.dir
+/home/janko/Dropbox/Udacity/Term2/CarND-MPC-Project/src/CMakeFiles/mpc.dir
+/home/janko/Dropbox/Udacity/Term2/CarND-MPC-Project/src/CMakeFiles/edit_cache.dir
